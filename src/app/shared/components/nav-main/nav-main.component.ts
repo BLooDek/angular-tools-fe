@@ -4,6 +4,9 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { RegisterDialogComponent } from '../register-dialog/register-dialog.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-nav-main',
@@ -13,6 +16,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
+    MatDialogModule,
   ],
 
   templateUrl: './nav-main.component.html',
@@ -24,4 +28,10 @@ export class NavMainComponent {
     { link: 'query-builder', name: 'Query Builder' },
     { link: 'grid', name: 'Table' },
   ];
+
+  constructor(private matDialog: MatDialog) {}
+
+  onOpenRegister(): void {
+    this.matDialog.open(RegisterDialogComponent);
+  }
 }

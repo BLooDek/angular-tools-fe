@@ -16,9 +16,9 @@
     <mat-icon>account_circle</mat-icon>
   </button>
   <mat-menu #menu="matMenu" ngSkipHydration>
-    <button mat-menu-item>
+    <button mat-menu-item (click)="onOpenRegister()">
       <mat-icon>dialpad</mat-icon>
-      <span>Redial</span>
+      <span>Register</span>
     </button>
     <button mat-menu-item disabled>
       <mat-icon>voicemail</mat-icon>
