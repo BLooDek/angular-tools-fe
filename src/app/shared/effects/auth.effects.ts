@@ -11,11 +11,9 @@ export class AuthEffects {
   login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.login),
-      switchMap(({ username, password }) =>
-        this.authService.login({ username, password }).pipe(
-          map(({ token }) =>
-            AuthActions.loginSuccess({ token, user: username })
-          ),
+      switchMap(({ email, password }) =>
+        this.authService.login({ email, password }).pipe(
+          map(({ token }) => AuthActions.loginSuccess({ token, user: email })),
           catchError((error) => of(AuthActions.loginFailure({ error })))
         )
       )
@@ -25,8 +23,8 @@ export class AuthEffects {
   register$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.registerUser),
-      mergeMap(({ username, password }) =>
-        this.authService.register({ username, password }).pipe(
+      mergeMap(({ email, password }) =>
+        this.authService.register({ email, password }).pipe(
           map((user) => AuthActions.registerUserSuccess({ user })),
           catchError((error) => of(AuthActions.registerUserFailure({ error })))
         )

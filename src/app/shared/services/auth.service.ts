@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { MAIN_URL } from '../constants/app';
 
 export interface LoginRequest {
-  username: string;
+  email: string;
   password: string;
 }
 
