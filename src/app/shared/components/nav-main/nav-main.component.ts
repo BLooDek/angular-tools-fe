@@ -8,6 +8,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { RegisterDialogComponent } from '../register-dialog/register-dialog.component';
 import { Store } from '@ngrx/store';
 import { authFeature } from '../../reducers/auth.reducer';
+import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
 
 @Component({
   selector: 'app-nav-main',
@@ -37,6 +38,9 @@ export class NavMainComponent {
 
   onOpenRegister(): void {
     this.matDialog.open(RegisterDialogComponent);
+  }
+  onOpenLogin() {
+    this.matDialog.open(LoginDialogComponent);
   }
   onLogout() {
     throw new Error('Method not implemented.');

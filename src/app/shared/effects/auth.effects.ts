@@ -11,11 +11,13 @@ export class AuthEffects {
 
   login$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(AuthActions.login),
+      ofType(AuthActions.loginUser),
       switchMap(({ email, password }) =>
         this.authService.login({ email, password }).pipe(
-          map(({ token }) => AuthActions.loginSuccess({ token, user: email })),
-          catchError((error) => of(AuthActions.loginFailure({ error })))
+          map(({ token, user }) =>
+            AuthActions.loginUserSuccess({ token, user })
+          ),
+          catchError((error) => of(AuthActions.loginUserFailure({ error })))
         )
       )
     )

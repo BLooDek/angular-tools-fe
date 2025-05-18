@@ -1,17 +1,17 @@
 import { createAction, props } from '@ngrx/store';
 import { RegisterResponse } from '../models/auth.interface';
 
-export const login = createAction(
+export const loginUser = createAction(
   '[Auth] Login',
   props<{ email: string; password: string }>()
 );
 
-export const loginSuccess = createAction(
+export const loginUserSuccess = createAction(
   '[Auth] Login Success',
   props<{ token: string; user: any }>()
 );
 
-export const loginFailure = createAction(
+export const loginUserFailure = createAction(
   '[Auth] Login Failure',
   props<{ error: any }>()
 );
