@@ -11,18 +11,19 @@ import { provideState, provideStore } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
 import { provideEffects } from '@ngrx/effects';
 import { AuthEffects } from './shared/effects/auth.effects';
-import { provideHttpClient } from '@angular/common/http';
+import { CoreEffects } from './shared/effects/core.effects';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { authFeature, authReducer } from './shared/reducers/auth.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(),
+    provideHttpClient(withFetch()),
     // provideClientHydration(withEventReplay()),
     provideState(authFeature),
     provideStore(reducers, { metaReducers }),
-    provideEffects(AuthEffects),
+    provideEffects(AuthEffects, CoreEffects),
 
     provideStoreDevtools({
       maxAge: 25, // Retains last 25 states

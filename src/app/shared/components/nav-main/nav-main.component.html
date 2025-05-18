@@ -8,14 +8,27 @@
       >{{ page.name }}
     </a>
   </li>
-  <button
-    mat-icon-button
-    [matMenuTriggerFor]="menu"
-    aria-label="Example icon-button with a menu"
-  >
-    <mat-icon>account_circle</mat-icon>
-  </button>
+  <div class="user-container">
+    @if(user$ | async) {
+    <p>hello {{ (user$ | async)?.email }}</p>
+    }
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+      aria-label="Example icon-button with a menu"
+    >
+      <mat-icon>account_circle</mat-icon>
+    </button>
+  </div>
+
   <mat-menu #menu="matMenu" ngSkipHydration>
+    @if(isLoggedIn$ | async){
+    <button mat-menu-item (click)="onLogout()">
+      <mat-icon>dialpad</mat-icon>
+      <span>Logout</span>
+    </button>
+    } @else {
+
     <button mat-menu-item (click)="onOpenRegister()">
       <mat-icon>dialpad</mat-icon>
       <span>Register</span>
@@ -28,5 +41,6 @@
       <mat-icon>notifications_off</mat-icon>
       <span>Disable alerts</span>
     </button>
+    }
   </mat-menu>
 </nav>
