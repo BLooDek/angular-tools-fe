@@ -9,6 +9,7 @@ import { RegisterDialogComponent } from '../register-dialog/register-dialog.comp
 import { Store } from '@ngrx/store';
 import { authFeature } from '../../reducers/auth.reducer';
 import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
+import { logoutUser } from '../../actions/auth.actions';
 
 @Component({
   selector: 'app-nav-main',
@@ -43,6 +44,6 @@ export class NavMainComponent {
     this.matDialog.open(LoginDialogComponent);
   }
   onLogout() {
-    throw new Error('Method not implemented.');
+    this.store.dispatch(logoutUser());
   }
 }

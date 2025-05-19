@@ -30,3 +30,11 @@ export const registerUserFailure = createAction(
   '[Auth] Register Failure',
   props<{ error: any }>()
 );
+export const logoutUser = createAction('[Auth] Logout');
+
+export const logoutUserSuccess = createAction('[Auth] Logout Success');
+
+export const logoutUserFailure = createAction(
+  '[Auth] Logout Failure',
+  props<{ error: any }>()
+);

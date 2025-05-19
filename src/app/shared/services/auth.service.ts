@@ -26,7 +26,7 @@ export class AuthService {
   }
 
   logout(): Observable<void> {
-    return this.http.post<void>(`${MAIN_URL}/auth/logout`, {});
+    return this.http.get<void>(`${MAIN_URL}/auth/logout`);
   }
 
   register(data: any): Observable<RegisterResponse> {

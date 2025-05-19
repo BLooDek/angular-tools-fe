@@ -12,14 +12,19 @@ import { reducers, metaReducers } from './reducers';
 import { provideEffects } from '@ngrx/effects';
 import { AuthEffects } from './shared/effects/auth.effects';
 import { CoreEffects } from './shared/effects/core.effects';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withFetch,
+  withInterceptors,
+} from '@angular/common/http';
 import { authFeature, authReducer } from './shared/reducers/auth.reducer';
+import { authInterceptor } from './shared/interceptors/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(withFetch()),
+    provideHttpClient(withFetch(), withInterceptors([authInterceptor])),
     // provideClientHydration(withEventReplay()),
     provideState(authFeature),
     provideStore(reducers, { metaReducers }),

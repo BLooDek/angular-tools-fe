@@ -56,6 +56,24 @@ export const authReducer = createReducer(
     ...state,
     loading: false,
     error,
+  })),
+  on(authActions.logoutUser, (state) => ({
+    ...state,
+    loading: true,
+    error: null,
+  })),
+  on(authActions.logoutUserSuccess, (state) => ({
+    ...state,
+    isLoggedIn: false,
+    token: null,
+    user: null,
+    loading: false,
+    error: null,
+  })),
+  on(authActions.logoutUserFailure, (state, { error }) => ({
+    ...state,
+    loading: false,
+    error,
   }))
 );
 export const authFeature = createFeature({
