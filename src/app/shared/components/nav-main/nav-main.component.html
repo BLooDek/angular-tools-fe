@@ -9,7 +9,7 @@
     </a>
   </li>
   <div class="user-container">
-    @if(userEmail$ | async) {
+    @if(isLoggedIn$ | async) {
     <p>hello {{ userEmail$ | async }}</p>
     }
     <button

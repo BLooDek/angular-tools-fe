@@ -1,1 +1,50 @@
-<p>home works!</p>
+<!-- <mat-form-field>
+  <mat-label>Selected tab index</mat-label>
+  <input matInput type="number" [formControl]="selected" />
+</mat-form-field> -->
+
+<div class="tabs-control">
+  <button
+    mat-raised-button
+    class="example-add-tab-button"
+    (click)="addTab(false)"
+  >
+    Add new tab
+  </button>
+  <!-- <mat-checkbox #selectAfterAdding> Select tab after adding </mat-checkbox> -->
+</div>
+
+<mat-tab-group
+  [selectedIndex]="selected.value"
+  (selectedIndexChange)="selected.setValue($event)"
+>
+  @if (isLoggedIn$ | async) { @for (tab of tabs; track tab; let index = $index)
+  {
+  <mat-tab [label]="tab">
+    <div class="tabs-control">
+      <button
+        mat-raised-button
+        class="example-delete-tab-button"
+        (click)="removeTab(index)"
+      >
+        Delete Tab
+      </button>
+    </div>
+    Contents for {{ tab }} tab
+  </mat-tab>
+  } } @else {
+
+  <mat-tab>
+    <div class="login-tab">
+      <button
+        mat-raised-button
+        class="example-delete-tab-button"
+        (click)="onOpenLogin()"
+      >
+        Open Login Dialog
+      </button>
+    </div>
+  </mat-tab>
+
+  }
+</mat-tab-group>
