@@ -1,6 +1,9 @@
-export interface RegisterResponse {
-  user: { id: string; email: string };
-  token: string;
-  userid: string;
-  message: string;
+export interface LoginRequest {
+  email: string;
+  password: string;
+}
+
+export interface LoginResponse {
+  email: string;
+  name?: string;
 }

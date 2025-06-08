@@ -3,17 +3,17 @@ import * as authActions from '../actions/auth.actions';
 
 interface State {
   isLoggedIn: boolean;
-  token: string | null;
-  user: any | null;
   error: string | null;
+  name: string | null;
+  email: string | null;
   loading: boolean;
 }
 
 const initialState: State = {
   isLoggedIn: false,
-  token: null,
-  user: null,
   error: null,
+  name: null,
+  email: null,
   loading: false,
 };
 
@@ -24,39 +24,37 @@ export const authReducer = createReducer(
     loading: true,
     error: null,
   })),
-  on(authActions.loginUserSuccess, (state, { token, user }) => ({
-    ...state,
-    isLoggedIn: true,
-    token,
-    user,
-    loading: false,
-  })),
-  on(authActions.loginUserFailure, (state, { error }) => ({
-    ...state,
-    loading: false,
-    error,
-  })),
+  on(
+    authActions.loginUserSuccess,
+    authActions.registerUserSuccess,
+    authActions.checkTokenSuccess,
+    (state, { email, name }) => ({
+      ...state,
+      isLoggedIn: true,
+      email,
+      name: name || null,
+      loading: false,
+    })
+  ),
+
   on(authActions.registerUser, (state) => ({
     ...state,
     loading: true,
     error: null,
     isLoggedIn: false,
-    token: null,
     user: null,
   })),
-  on(authActions.registerUserSuccess, (state, { user, token }) => ({
-    ...state,
-    user,
-    loading: false,
-    token,
-    isLoggedIn: true,
-    error: null,
-  })),
-  on(authActions.registerUserFailure, (state, { error }) => ({
-    ...state,
-    loading: false,
-    error,
-  })),
+
+  on(
+    authActions.registerUserFailure,
+    authActions.loginUserFailure,
+    authActions.logoutUserFailure,
+    (state, { error }) => ({
+      ...state,
+      loading: false,
+      error,
+    })
+  ),
   on(authActions.logoutUser, (state) => ({
     ...state,
     loading: true,
@@ -65,15 +63,9 @@ export const authReducer = createReducer(
   on(authActions.logoutUserSuccess, (state) => ({
     ...state,
     isLoggedIn: false,
-    token: null,
     user: null,
     loading: false,
     error: null,
-  })),
-  on(authActions.logoutUserFailure, (state, { error }) => ({
-    ...state,
-    loading: false,
-    error,
   }))
 );
 export const authFeature = createFeature({

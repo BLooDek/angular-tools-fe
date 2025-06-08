@@ -14,8 +14,8 @@ export class AuthEffects {
       ofType(AuthActions.loginUser),
       switchMap(({ email, password }) =>
         this.authService.login({ email, password }).pipe(
-          map(({ token, user }) =>
-            AuthActions.loginUserSuccess({ token, user })
+          map(({ email, name }) =>
+            AuthActions.loginUserSuccess({ email, name })
           ),
           catchError((error) => of(AuthActions.loginUserFailure({ error })))
         )
@@ -42,6 +42,20 @@ export class AuthEffects {
         this.authService.logout().pipe(
           map(() => AuthActions.logoutUserSuccess()),
           catchError((error) => of(AuthActions.logoutUserFailure({ error })))
+        )
+      )
+    )
+  );
+
+  checkToken$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.checkToken),
+      switchMap(() =>
+        this.authService.checkToken().pipe(
+          map(({ email, name }) =>
+            AuthActions.checkTokenSuccess({ email, name })
+          ),
+          catchError((error) => of(AuthActions.checkTokenFailure({ error })))
         )
       )
     )

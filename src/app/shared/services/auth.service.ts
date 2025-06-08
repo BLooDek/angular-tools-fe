@@ -2,18 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MAIN_URL } from '../constants/app';
-import { RegisterResponse } from '../models/auth.interface';
-
-export interface LoginRequest {
-  email: string;
-  password: string;
-}
-
-export interface LoginResponse {
-  token: string;
-  user: any;
-  message: string;
-}
+import { LoginRequest, LoginResponse } from '../models/auth.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -29,7 +18,11 @@ export class AuthService {
     return this.http.get<void>(`${MAIN_URL}/auth/logout`);
   }
 
-  register(data: any): Observable<RegisterResponse> {
-    return this.http.post<RegisterResponse>(`${MAIN_URL}/auth/register`, data);
+  register(data: any): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`${MAIN_URL}/auth/register`, data);
+  }
+
+  checkToken(): Observable<LoginResponse> {
+    return this.http.get<LoginResponse>(`${MAIN_URL}/auth/check-token`);
   }
 }

@@ -16,15 +16,17 @@ import {
   provideHttpClient,
   withFetch,
   withInterceptors,
+  HTTP_INTERCEPTORS,
 } from '@angular/common/http';
+import { credentialsInterceptor } from './shared/interceptors/auth.interceptor';
 import { authFeature, authReducer } from './shared/reducers/auth.reducer';
-import { authInterceptor } from './shared/interceptors/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(withFetch(), withInterceptors([authInterceptor])),
+    provideHttpClient(withFetch(), withInterceptors([credentialsInterceptor])),
+
     // provideClientHydration(withEventReplay()),
     provideState(authFeature),
     provideStore(reducers, { metaReducers }),

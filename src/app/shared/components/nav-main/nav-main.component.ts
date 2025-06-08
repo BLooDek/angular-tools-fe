@@ -30,7 +30,7 @@ export class NavMainComponent {
   private matDialog: MatDialog = inject(MatDialog);
 
   isLoggedIn$ = this.store.select(authFeature.selectIsLoggedIn);
-  user$ = this.store.select(authFeature.selectUser);
+  userEmail$ = this.store.select(authFeature.selectEmail);
   pages: { link: string; name: string }[] = [
     { link: './', name: 'Home' },
     { link: 'query-builder', name: 'Query Builder' },

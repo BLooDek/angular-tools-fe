@@ -9,8 +9,8 @@
     </a>
   </li>
   <div class="user-container">
-    @if(user$ | async) {
-    <p>hello {{ (user$ | async)?.email }}</p>
+    @if(userEmail$ | async) {
+    <p>hello {{ userEmail$ | async }}</p>
     }
     <button
       mat-icon-button
