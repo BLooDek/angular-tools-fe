@@ -1,13 +1,45 @@
 .navigation {
-  padding: 1rem;
   display: flex;
   justify-content: space-between;
-  .user-container {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #3f51b5;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.nav-links {
+  list-style: none; /* Remove bullet points from li */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 15px;
+  a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
   }
-  .nav-links {
-    display: flex;
+}
+
+.user-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  button {
+    color: white;
   }
 }

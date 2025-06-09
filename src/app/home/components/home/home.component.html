@@ -1,36 +1,38 @@
-<section class="tabs-control">
-  <app-add-new-tab></app-add-new-tab>
-</section>
+<div class="main-container">
+  <div class="tab-controls">
+    <app-add-new-tab></app-add-new-tab>
+  </div>
 
-<mat-tab-group
-  [selectedIndex]="selected.value"
-  (selectedIndexChange)="selected.setValue($event)"
-  [animationDuration]="'0ms'"
->
-  @if (isLoggedIn$ | async) { @for (tab of (tabs$ |async); track tab.id; let
-  index = $index) {
-  <mat-tab [label]="tab.title">
-    <div class="tabs-control">
-      <button
-        mat-raised-button
-        class="button"
-        (click)="removeTab(tab.id!)"
-        [disabled]="(tabsLoading$ | async) || !(tabsValidRemove$ | async)"
-      >
-        Delete Tab
-      </button>
-    </div>
-    No content for {{ tab.type }}
-  </mat-tab>
-  } } @else {
+  <mat-tab-group
+    [selectedIndex]="selected.value"
+    (selectedIndexChange)="selected.setValue($event)"
+    [animationDuration]="'0ms'"
+  >
+    @if (isLoggedIn$ | async) { @for (tab of (tabs$ |async); track tab.id; let
+    index = $index) {
+    <mat-tab [label]="tab.title">
+      <div class="tab-controls">
+        <button
+          mat-raised-button
+          class="button"
+          (click)="removeTab(tab.id!)"
+          [disabled]="(tabsLoading$ | async) || !(tabsValidRemove$ | async)"
+        >
+          Delete Tab
+        </button>
+      </div>
+      No content for {{ tab.type }}
+    </mat-tab>
+    } } @else {
 
-  <mat-tab>
-    <div class="login-tab">
-      <button mat-raised-button class="button" (click)="onOpenLogin()">
-        Open Login Dialog
-      </button>
-    </div>
-  </mat-tab>
+    <mat-tab>
+      <div class="login-tab">
+        <button mat-raised-button class="button" (click)="onOpenLogin()">
+          Open Login Dialog
+        </button>
+      </div>
+    </mat-tab>
 
-  }
-</mat-tab-group>
+    }
+  </mat-tab-group>
+</div>
