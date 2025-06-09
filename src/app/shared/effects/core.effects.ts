@@ -2,6 +2,7 @@ import { inject, Inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AuthService } from '../services/auth.service';
 import * as AuthActions from '../actions/auth.actions';
+import * as tabsActions from '../../home/actions/tabs.actions';
 import { catchError, map, mergeMap, of, switchMap, tap } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -14,9 +15,17 @@ export class CoreEffects {
   showErrror = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(AuthActions.registerUserFailure),
+        ofType(
+          AuthActions.registerUserFailure,
+          AuthActions.loginUserFailure,
+          AuthActions.logoutUserFailure,
+          AuthActions.checkTokenFailure,
+          tabsActions.tabsAddError,
+          tabsActions.tabsGetError,
+          tabsActions.tabsRemoveError
+        ),
         tap(({ error }) => {
-          console.log('Error:', error);
+          // console.error('Error:', error);
           this.matSnackbar.open(
             error?.error?.message ?? 'Error has occured',
             'Close',
