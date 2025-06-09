@@ -20,6 +20,8 @@ import {
 } from '@angular/common/http';
 import { credentialsInterceptor } from './shared/interceptors/auth.interceptor';
 import { authFeature, authReducer } from './shared/reducers/auth.reducer';
+import { tabsFeature } from './home/reducers/tabs.reducer';
+import { TabsEffects } from './home/effects/tabs.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -29,8 +31,9 @@ export const appConfig: ApplicationConfig = {
 
     // provideClientHydration(withEventReplay()),
     provideState(authFeature),
+    provideState(tabsFeature),
     provideStore(reducers, { metaReducers }),
-    provideEffects(AuthEffects, CoreEffects),
+    provideEffects(AuthEffects, CoreEffects, TabsEffects),
 
     provideStoreDevtools({
       maxAge: 25, // Retains last 25 states
