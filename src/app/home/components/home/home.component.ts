@@ -16,6 +16,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { tabsFeature } from '../../reducers/tabs.reducer';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { tabsAdd, tabsGet, tabsRemove } from '../../actions/tabs.actions';
+import { AddNewTabComponent } from './add-new-tab/add-new-tab.component';
 @Component({
   selector: 'app-home',
   imports: [
@@ -30,6 +31,7 @@ import { tabsAdd, tabsGet, tabsRemove } from '../../actions/tabs.actions';
     MatIconModule,
     MatTooltipModule,
     MatProgressSpinnerModule,
+    AddNewTabComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -45,12 +47,6 @@ export class HomeComponent implements OnInit {
   tabs$ = this.store.select(tabsFeature.selectTabs);
   tabsValidRemove$ = this.tabs$.pipe(map((tabs) => tabs.length > 0));
   selected = new FormControl(0);
-
-  addTab() {
-    this.store.dispatch(
-      tabsAdd({ tab: { title: 'New Tab ' + Math.random() + 1, type: 'notes' } })
-    );
-  }
 
   removeTab(id: string) {
     this.store.dispatch(tabsRemove({ id }));

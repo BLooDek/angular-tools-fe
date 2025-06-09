@@ -1,0 +1,47 @@
+<div
+  [matTooltip]="!(isLoggedIn$ | async) ? 'Login to add new tab' : 'Add new tab'"
+  [matTooltipPosition]="'above'"
+>
+  <form [formGroup]="form" class="add-new-tab-form">
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input
+        matInput
+        formControlName="title"
+        placeholder="Enter tab title"
+        required
+      />
+      <mat-error *ngIf="form.get('title')?.hasError('required')">
+        Tab title is required.
+      </mat-error>
+      <mat-error *ngIf="form.get('title')?.hasError('minlength')">
+        Tab title must be at least 3 characters long.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field floatLabel="always">
+      <mat-label>Type</mat-label>
+
+      <mat-error *ngIf="form.get('type')?.hasError('required')">
+        Tab type is required.
+      </mat-error>
+      <mat-select formControlName="type">
+        @for (type of types; track type){
+        <mat-option [value]="type">{{ type }}</mat-option>
+
+        }
+      </mat-select>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      class="button"
+      (click)="addTab()"
+      [disabled]="
+        !(isLoggedIn$ | async) || (tabsLoading$ | async) || form.invalid
+      "
+    >
+      Add new tab @if ((tabsLoading$ | async)){
+      <mat-spinner [diameter]="16"></mat-spinner>
+      }
+    </button>
+  </form>
+</div>

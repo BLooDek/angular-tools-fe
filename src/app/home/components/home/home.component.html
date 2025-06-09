@@ -1,21 +1,5 @@
 <section class="tabs-control">
-  <div
-    [matTooltip]="
-      !(isLoggedIn$ | async) ? 'Login to add new tab' : 'Add new tab'
-    "
-    [matTooltipPosition]="'above'"
-  >
-    <button
-      mat-raised-button
-      class="example-add-tab-button"
-      (click)="addTab()"
-      [disabled]="!(isLoggedIn$ | async) || (tabsLoading$ | async)"
-    >
-      Add new tab @if ((tabsLoading$ | async)){
-      <mat-spinner [diameter]="16"></mat-spinner>
-      }
-    </button>
-  </div>
+  <app-add-new-tab></app-add-new-tab>
 </section>
 
 <mat-tab-group
@@ -29,7 +13,7 @@
     <div class="tabs-control">
       <button
         mat-raised-button
-        class="example-delete-tab-button"
+        class="button"
         (click)="removeTab(tab.id!)"
         [disabled]="(tabsLoading$ | async) || !(tabsValidRemove$ | async)"
       >
@@ -42,11 +26,7 @@
 
   <mat-tab>
     <div class="login-tab">
-      <button
-        mat-raised-button
-        class="example-delete-tab-button"
-        (click)="onOpenLogin()"
-      >
+      <button mat-raised-button class="button" (click)="onOpenLogin()">
         Open Login Dialog
       </button>
     </div>
