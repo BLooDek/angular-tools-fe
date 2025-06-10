@@ -10,13 +10,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Store } from '@ngrx/store';
-import { authFeature } from '../../../../shared/reducers/auth.reducer';
-import { tabsFeature } from '../../../reducers/tabs.reducer';
-import { tabsAdd, tabsGet } from '../../../actions/tabs.actions';
+
 import { CommonModule } from '@angular/common';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import { Subscription } from 'rxjs';
+import { authFeature } from '../../../shared/reducers/auth.reducer';
+import { tabsFeature } from '../../reducers/tabs.reducer';
+import { tabsAdd, tabsGet } from '../../actions/tabs.actions';
 
 @Component({
   selector: 'app-add-new-tab',

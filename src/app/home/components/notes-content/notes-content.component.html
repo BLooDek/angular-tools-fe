@@ -1,0 +1,42 @@
+<div class="add-note-form-container">
+  <form
+    [formGroup]="noteForm"
+    (ngSubmit)="addNote()"
+    (click)="activateForm()"
+    class="note-form"
+    [class.active]="isFormActive"
+  >
+    @if (isFormActive) {
+    <input
+      type="text"
+      formControlName="title"
+      placeholder="Title"
+      class="note-title-input"
+    />
+    }
+    <textarea
+      formControlName="content"
+      placeholder="Take a note..."
+      class="note-content-input"
+    ></textarea>
+    @if (isFormActive) {
+    <button type="submit" [disabled]="!noteForm.valid" class="add-note-button">
+      Add Note
+    </button>
+    }
+  </form>
+</div>
+
+<div class="notes-grid">
+  @if((notes$ | async); as notes) { @if(notes.length > 0) { @for (note of notes;
+  track note.id) {
+  <div class="note-tile">
+    <h3>{{ note.title }}</h3>
+    <p>{{ note.content }}</p>
+  </div>
+  } } @else {
+  <p>No notes found for this tab.</p>
+  } } @else {
+  <p>Loading notes...</p>
+  }
+</div>

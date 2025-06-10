@@ -16,7 +16,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { tabsFeature } from '../../reducers/tabs.reducer';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { tabsAdd, tabsGet, tabsRemove } from '../../actions/tabs.actions';
-import { AddNewTabComponent } from './add-new-tab/add-new-tab.component';
+import { AddNewTabComponent } from '../add-new-tab/add-new-tab.component';
+import { NotesContentComponent } from '../notes-content/notes-content.component';
 @Component({
   selector: 'app-home',
   imports: [
@@ -32,6 +33,7 @@ import { AddNewTabComponent } from './add-new-tab/add-new-tab.component';
     MatTooltipModule,
     MatProgressSpinnerModule,
     AddNewTabComponent,
+    NotesContentComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',

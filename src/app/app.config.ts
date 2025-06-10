@@ -22,6 +22,8 @@ import { credentialsInterceptor } from './shared/interceptors/auth.interceptor';
 import { authFeature, authReducer } from './shared/reducers/auth.reducer';
 import { tabsFeature } from './home/reducers/tabs.reducer';
 import { TabsEffects } from './home/effects/tabs.effects';
+import { notesFeature } from './home/reducers/notes.reucer';
+import { NotesEffects } from './home/effects/notes.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -32,8 +34,9 @@ export const appConfig: ApplicationConfig = {
     // provideClientHydration(withEventReplay()),
     provideState(authFeature),
     provideState(tabsFeature),
+    provideState(notesFeature),
     provideStore(reducers, { metaReducers }),
-    provideEffects(AuthEffects, CoreEffects, TabsEffects),
+    provideEffects([NotesEffects, AuthEffects, CoreEffects, TabsEffects]),
 
     provideStoreDevtools({
       maxAge: 25, // Retains last 25 states

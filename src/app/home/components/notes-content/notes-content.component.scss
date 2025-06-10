@@ -1,0 +1,99 @@
+.notes-grid {
+  column-count: 4; /* Adjust as needed for desired number of columns */
+  column-gap: 16px;
+  padding: 16px;
+
+  @media (max-width: 1200px) {
+    column-count: 3;
+  }
+
+  @media (max-width: 768px) {
+    column-count: 2;
+  }
+
+  @media (max-width: 480px) {
+    column-count: 1;
+  }
+}
+
+.note-tile {
+  background-color: #fff;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 1px 3px 1px rgba(60, 64, 67, 0.15);
+  margin-bottom: 16px;
+  display: inline-block;
+  width: 100%;
+  break-inside: avoid;
+  box-sizing: border-box;
+
+  h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #5f6368;
+  }
+}
+
+.add-note-form-container {
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+}
+
+.note-form {
+  background-color: #fff;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  padding: 12px 16px;
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 1px 3px 1px rgba(60, 64, 67, 0.15);
+  width: 100%;
+  max-width: 600px;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &.active {
+    padding: 16px;
+  }
+
+  input,
+  textarea {
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding: 4px 0;
+    width: 100%;
+    resize: none;
+  }
+
+  .note-title-input {
+    font-weight: 500;
+  }
+
+  .add-note-button {
+    align-self: flex-end;
+    background-color: #f8f9fa;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-weight: 500;
+    &:hover {
+      background-color: #e8eaed;
+    }
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+}
