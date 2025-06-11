@@ -8,7 +8,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { Store } from '@ngrx/store';
 import { authFeature } from '../../../shared/reducers/auth.reducer';
-import { map, Observable } from 'rxjs';
+import { filter, first, map, Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginDialogComponent } from '../../../shared/components/login-dialog/login-dialog.component';
@@ -49,11 +49,23 @@ export class HomeComponent implements OnInit {
   tabs$ = this.store.select(tabsFeature.selectTabs);
   tabsValidRemove$ = this.tabs$.pipe(map((tabs) => tabs.length > 0));
   selected = new FormControl(0);
+  selectedTabId = new FormControl('');
 
   removeTab(id: string) {
     this.store.dispatch(tabsRemove({ id }));
   }
   onOpenLogin() {
     this.matDialog.open(LoginDialogComponent);
+  }
+  setSelectedTab($event: number) {
+    this.selected.setValue($event);
+    this.tabs$
+      .pipe(
+        first(),
+        filter((e) => e !== null && e.length > 0)
+      )
+      .subscribe((tabs) =>
+        this.selectedTabId.setValue(tabs?.[$event]?.id ?? null)
+      );
   }
 }

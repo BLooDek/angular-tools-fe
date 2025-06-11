@@ -1,4 +1,12 @@
-import { Component, inject, input, InputSignal, OnInit } from '@angular/core';
+import {
+  Component,
+  inject,
+  input,
+  InputSignal,
+  OnInit,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { notesGet } from '../../actions/notes.actions';
 import { tabsFeature } from '../../reducers/tabs.reducer';
@@ -18,7 +26,7 @@ import { notesAdd } from '../../actions/notes.actions';
   templateUrl: './notes-content.component.html',
   styleUrl: './notes-content.component.scss',
 })
-export class NotesContentComponent implements OnInit {
+export class NotesContentComponent implements OnInit, OnChanges {
   private readonly store = inject(Store);
   private readonly fb = inject(FormBuilder);
 
@@ -29,12 +37,16 @@ export class NotesContentComponent implements OnInit {
 
   ngOnInit(): void {
     this.notes$.subscribe(console.log);
-    this.store.dispatch(notesGet({ tabId: this.tabId() }));
-
     this.noteForm = this.fb.group({
       title: ['', Validators.required],
       content: [''],
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['tabId'] && this.tabId()) {
+      this.store.dispatch(notesGet({ tabId: this.tabId() }));
+    }
   }
 
   activateForm(): void {
@@ -45,7 +57,6 @@ export class NotesContentComponent implements OnInit {
     if (this.noteForm.valid) {
       const { title, content } = this.noteForm.value;
       const newNote = {
-        id: Date.now().toString(), // Re-add unique ID generation
         title,
         content,
         tabId: this.tabId(),

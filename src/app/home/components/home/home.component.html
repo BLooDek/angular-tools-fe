@@ -5,7 +5,7 @@
 
   <mat-tab-group
     [selectedIndex]="selected.value"
-    (selectedIndexChange)="selected.setValue($event)"
+    (selectedIndexChange)="setSelectedTab($event)"
     [animationDuration]="'0ms'"
   >
     @if (isLoggedIn$ | async) { @for (tab of (tabs$ |async); track tab.id; let
@@ -21,7 +21,7 @@
           Delete Tab
         </button>
       </div>
-      <app-notes-content [tabId]="tab.id!"></app-notes-content>
+      <app-notes-content [tabId]="selectedTabId.value!"></app-notes-content>
     </mat-tab>
     } } @else {
 
