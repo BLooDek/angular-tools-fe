@@ -1,20 +1,26 @@
 <div class="note-tile">
   <div class="note-actions">
     @if (!showConfirmation) {
-    <mat-icon class="delete-icon" (click)="onDeleteClick()">delete</mat-icon>
+    <button mat-icon-button class="delete-icon" (click)="onDeleteClick()">
+      <mat-icon>delete</mat-icon>
+    </button>
     } @else {
-    <mat-icon
+    <button
+      mat-icon-button
       class="confirm-icon"
       matTooltip="Confirm delete"
       (click)="onConfirmDelete()"
-      >check</mat-icon
     >
-    <mat-icon
+      <mat-icon>check</mat-icon>
+    </button>
+    <button
+      mat-icon-button
       class="cancel-icon"
       matTooltip="Cancel delete"
       (click)="onCancelDelete()"
-      >cancel</mat-icon
     >
+      <mat-icon>cancel</mat-icon>
+    </button>
     }
   </div>
   <h3>{{ note.title }}</h3>
