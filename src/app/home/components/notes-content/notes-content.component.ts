@@ -8,7 +8,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { notesGet } from '../../actions/notes.actions';
+import { notesGet, notesUpdate } from '../../actions/notes.actions';
 import { tabsFeature } from '../../reducers/tabs.reducer';
 import { CommonModule } from '@angular/common';
 import { notesFeature } from '../../reducers/notes.reucer';
@@ -68,6 +68,11 @@ export class NotesContentComponent implements OnInit, OnChanges {
       this.noteForm.reset();
       this.isFormActive = false;
     }
+  }
+  onUpdateNote($event: Note) {
+    this.store.dispatch(
+      notesUpdate({ note: { ...$event, tabId: this.tabId() } })
+    );
   }
 
   onDeleteNote(id: string): void {

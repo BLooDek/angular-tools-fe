@@ -36,16 +36,56 @@
   width: 100%;
   break-inside: avoid;
   box-sizing: border-box;
+  transition: all 0.3s ease-in-out;
 
-  h3 {
-    margin: 0;
-    font-size: 1.1rem;
-    font-weight: 500;
+  .note-display {
+    h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #5f6368;
+    }
   }
 
-  p {
-    margin: 0;
-    font-size: 0.9rem;
-    color: #5f6368;
+  .note-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .note-title-input,
+    .note-content-textarea {
+      width: 100%;
+      padding: 8px 0;
+      border: none;
+      border-bottom: 1px solid #dadce0;
+      font-family: Roboto, "Helvetica Neue", sans-serif;
+      font-size: 1rem;
+      &:focus {
+        outline: none;
+        border-bottom-color: #6200ee; /* Example focus color */
+      }
+    }
+
+    .note-title-input {
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    .note-content-textarea {
+      font-size: 0.9rem;
+      color: #5f6368;
+      resize: vertical;
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+    }
   }
 }

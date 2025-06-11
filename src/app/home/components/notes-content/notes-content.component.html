@@ -30,7 +30,11 @@
 <div class="notes-grid">
   @if((notes$ | async); as notes) { @if(notes.length > 0) { @for (note of notes;
   track note.id) {
-  <app-note [note]="note" (deleteNote)="onDeleteNote($event)"></app-note>
+  <app-note
+    [note]="note"
+    (deleteNote)="onDeleteNote($event)"
+    (updateNote)="onUpdateNote($event)"
+  ></app-note>
   } } @else {
   <p>No notes found for this tab.</p>
   } } @else {

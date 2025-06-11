@@ -1,7 +1,12 @@
 <div class="note-tile">
   <div class="note-actions">
     @if (!showConfirmation) {
-    <button mat-icon-button class="delete-icon" (click)="onDeleteClick()">
+    <button
+      mat-icon-button
+      class="delete-icon"
+      (click)="onDeleteClick()"
+      matTooltip="Delete note"
+    >
       <mat-icon>delete</mat-icon>
     </button>
     } @else {
@@ -23,6 +28,47 @@
     </button>
     }
   </div>
-  <h3>{{ note.title }}</h3>
-  <p>{{ note.content }}</p>
+  @if (!editMode) {
+  <div class="note-display" (dblclick)="onDblClick()">
+    <h3>{{ note.title }}</h3>
+    <p>{{ note.content }}</p>
+  </div>
+  } @else {
+  <form class="note-form" (ngSubmit)="onSave()" #noteForm="ngForm">
+    <input
+      class="note-title-input"
+      [(ngModel)]="editedNote.title"
+      name="title"
+      required
+      placeholder="Title"
+      cdkFocusInitial
+    />
+    <textarea
+      class="note-content-textarea"
+      [(ngModel)]="editedNote.content"
+      name="content"
+      rows="5"
+      required
+      placeholder="Content"
+    ></textarea>
+    <div class="form-actions">
+      <button
+        mat-icon-button
+        type="submit"
+        [disabled]="!noteForm.valid"
+        matTooltip="Save changes"
+      >
+        <mat-icon>save</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        type="button"
+        (click)="onCancelEdit()"
+        matTooltip="Cancel edit"
+      >
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </div>
+  </form>
+  }
 </div>

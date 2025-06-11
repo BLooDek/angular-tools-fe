@@ -22,3 +22,6 @@ body {
     flex-direction: column;
   }
 }
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: #fff !important;
+}
