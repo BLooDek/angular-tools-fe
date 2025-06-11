@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { INote } from '../reducers/notes.reucer';
 import { Observable } from 'rxjs';
 import { MAIN_URL } from '../../shared/constants/app';
+import { Note } from '../../shared/models/note.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -10,16 +10,16 @@ import { MAIN_URL } from '../../shared/constants/app';
 export class NotesService {
   constructor(private http: HttpClient) {}
 
-  getNotes(tabId: string): Observable<INote[]> {
-    return this.http.post<INote[]>(`${MAIN_URL}/notes/get`, { tabId });
+  getNotes(tabId: string): Observable<Note[]> {
+    return this.http.post<Note[]>(`${MAIN_URL}/notes/get`, { tabId });
   }
 
-  addNote(note: INote): Observable<INote> {
-    return this.http.post<INote>(`${MAIN_URL}/notes`, note);
+  addNote(note: Note): Observable<Note> {
+    return this.http.post<Note>(`${MAIN_URL}/notes`, note);
   }
 
-  updateNote(note: INote): Observable<INote> {
-    return this.http.put<INote>(`${MAIN_URL}/notes`, note);
+  updateNote(note: Note): Observable<Note> {
+    return this.http.put<Note>(`${MAIN_URL}/notes`, note);
   }
   removeNote(id: string): Observable<void> {
     return this.http.post<void>(`${MAIN_URL}/notes/remove`, { id });

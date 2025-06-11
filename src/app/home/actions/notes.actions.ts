@@ -1,13 +1,12 @@
 import { createAction, props } from '@ngrx/store';
-import { INote } from '../reducers/notes.reucer';
-
+import { Note } from '../../shared/models/note.interface';
 export const notesGet = createAction(
   '[Notes] Get Notes',
   props<{ tabId: string }>()
 );
 export const notesGetSuccess = createAction(
   '[Notes] Get Notes Success',
-  props<{ notes: INote[] }>()
+  props<{ notes: Note[] }>()
 );
 export const notesGetError = createAction(
   '[Notes] Get Notes Error',
@@ -15,11 +14,11 @@ export const notesGetError = createAction(
 );
 export const notesAdd = createAction(
   '[Notes] Add Note',
-  props<{ note: INote }>()
+  props<{ note: Note }>()
 );
 export const notesAddSuccess = createAction(
   '[Notes] Add Note Success',
-  props<{ note: INote }>()
+  props<{ note: Note }>()
 );
 export const notesAddError = createAction(
   '[Notes] Add Note Error',
@@ -27,11 +26,11 @@ export const notesAddError = createAction(
 );
 export const notesUpdate = createAction(
   '[Notes] Update Note',
-  props<{ note: INote }>()
+  props<{ note: Note }>()
 );
 export const notesUpdateSuccess = createAction(
   '[Notes] Update Note Success',
-  props<{ note: INote }>()
+  props<{ note: Note }>()
 );
 
 export const notesUpdateError = createAction(

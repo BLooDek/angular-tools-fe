@@ -18,11 +18,14 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { notesAdd } from '../../actions/notes.actions';
+import { notesAdd, notesRemove } from '../../actions/notes.actions';
+import { NoteComponent } from '../note/note.component';
+import { Observable } from 'rxjs';
+import { Note } from '../../../shared/models/note.interface';
 
 @Component({
   selector: 'app-notes-content',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, NoteComponent],
   templateUrl: './notes-content.component.html',
   styleUrl: './notes-content.component.scss',
 })
@@ -31,7 +34,7 @@ export class NotesContentComponent implements OnInit, OnChanges {
   private readonly fb = inject(FormBuilder);
 
   tabId = input('');
-  notes$ = this.store.select(notesFeature.selectNotes);
+  notes$: Observable<Note[]> = this.store.select(notesFeature.selectNotes);
   noteForm!: FormGroup;
   isFormActive = false;
 
@@ -56,7 +59,7 @@ export class NotesContentComponent implements OnInit, OnChanges {
   addNote(): void {
     if (this.noteForm.valid) {
       const { title, content } = this.noteForm.value;
-      const newNote = {
+      const newNote: Note = {
         title,
         content,
         tabId: this.tabId(),
@@ -65,5 +68,9 @@ export class NotesContentComponent implements OnInit, OnChanges {
       this.noteForm.reset();
       this.isFormActive = false;
     }
+  }
+
+  onDeleteNote(id: string): void {
+    this.store.dispatch(notesRemove({ id }));
   }
 }

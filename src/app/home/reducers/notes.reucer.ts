@@ -1,17 +1,11 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import * as notesAction from '../actions/notes.actions';
-
-export interface INote {
-  id?: string;
-  title: string;
-  content: string;
-  tabId: string;
-}
+import { Note } from '../../shared/models/note.interface';
 
 interface State {
   error: string | null;
   loading: boolean;
-  notes: INote[];
+  notes: Note[];
 }
 export const initialState: State = {
   error: null,
