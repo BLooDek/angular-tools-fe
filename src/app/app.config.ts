@@ -24,12 +24,16 @@ import { tabsFeature } from './home/reducers/tabs.reducer';
 import { TabsEffects } from './home/effects/tabs.effects';
 import { notesFeature } from './home/reducers/notes.reucer';
 import { NotesEffects } from './home/effects/notes.effects';
+import { authInterceptor } from './shared/interceptors/logout.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(withFetch(), withInterceptors([credentialsInterceptor])),
+    provideHttpClient(
+      withFetch(),
+      withInterceptors([credentialsInterceptor, authInterceptor])
+    ),
 
     // provideClientHydration(withEventReplay()),
     provideState(authFeature),
