@@ -1,5 +1,13 @@
-import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import { HTTP_INTERCEPTORS, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import {
+  provideClientHydration,
+  withEventReplay,
+} from '@angular/platform-browser';
+import {
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withFetch,
+  withInterceptors,
+} from '@angular/common/http';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideRouter } from '@angular/router';
 import { isDevMode } from '@angular/core';
@@ -10,10 +18,10 @@ import { provideState, provideStore } from '@ngrx/store';
 import { authInterceptor } from './shared/interceptors/logout.interceptor';
 import { credentialsInterceptor } from './shared/interceptors/auth.interceptor';
 import { authFeature, authReducer } from './shared/reducers/auth.reducer';
+import { notesFeature } from './home/reducers/notes.reducer';
 import { AuthEffects } from './shared/effects/auth.effects';
 import { CoreEffects } from './shared/effects/core.effects';
 import { NotesEffects } from './home/effects/notes.effects';
-import { notesFeature } from './home/reducers/notes.reucer';
 import { tabsFeature } from './home/reducers/tabs.reducer';
 import { TabsEffects } from './home/effects/tabs.effects';
 import { routes } from './app.routes';

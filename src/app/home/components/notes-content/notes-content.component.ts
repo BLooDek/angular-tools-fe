@@ -18,9 +18,9 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { Note } from '../../../shared/models/note.interface';
+import { notesFeature } from '../../reducers/notes.reducer';
 import { notesGet, notesUpdate } from '../../actions/notes.actions';
 import { notesAdd, notesRemove } from '../../actions/notes.actions';
-import { notesFeature } from '../../reducers/notes.reucer';
 import { tabsFeature } from '../../reducers/tabs.reducer';
 import { NoteComponent } from '../note/note.component';
 

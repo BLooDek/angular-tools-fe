@@ -1,6 +1,7 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
-import * as notesAction from '../actions/notes.actions';
+
 import { Note } from '../../shared/models/note.interface';
+import * as notesAction from '../actions/notes.actions';
 
 interface State {
   error: string | null;
