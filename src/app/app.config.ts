@@ -23,6 +23,7 @@ import { todosFeature } from './home/reducers/todos.reducer';
 import { AuthEffects } from './shared/effects/auth.effects';
 import { CoreEffects } from './shared/effects/core.effects';
 import { NotesEffects } from './home/effects/notes.effects';
+import { TodosEffects } from './home/effects/todos.effects';
 import { tabsFeature } from './home/reducers/tabs.reducer';
 import { TabsEffects } from './home/effects/tabs.effects';
 import { routes } from './app.routes';
@@ -48,7 +49,7 @@ export const appConfig: ApplicationConfig = {
       AuthEffects,
       CoreEffects,
       TabsEffects,
-      TabsEffects,
+      TodosEffects,
     ]),
 
     provideStoreDevtools({

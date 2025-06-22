@@ -22,9 +22,13 @@
         </button>
       </div>
       @if(tab.type === 'notes') {
+
       <app-notes-content [tabId]="selectedTabId.value!"></app-notes-content>
+
       } @if (tab.type ==='todos'){
-      <app-todos-content></app-todos-content>
+
+      <app-todos-content [tabId]="selectedTabId.value!"></app-todos-content>
+
       }
     </mat-tab>
     } } @else {

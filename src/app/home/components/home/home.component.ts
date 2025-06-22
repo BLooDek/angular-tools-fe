@@ -18,9 +18,11 @@ import { NotesContentComponent } from '../notes-content/notes-content.component'
 import { TodosContentComponent } from '../todos-content/todos-content.component';
 import { authFeature } from '../../../shared/reducers/auth.reducer';
 import { AddNewTabComponent } from '../add-new-tab/add-new-tab.component';
+import { notesGet } from '../../actions/notes.actions';
+import { getTodos } from '../../actions/todos.actions';
 import { tabsFeature } from '../../reducers/tabs.reducer';
-import { tabsAdd, tabsGet, tabsRemove } from '../../actions/tabs.actions';
-import { TodoComponent } from '../todo/todo.component';
+import { tabsGet, tabsRemove } from '../../actions/tabs.actions';
+
 @Component({
   selector: 'app-home',
   imports: [
@@ -68,8 +70,19 @@ export class HomeComponent implements OnInit {
         first(),
         filter((e) => e !== null && e.length > 0)
       )
-      .subscribe((tabs) =>
-        this.selectedTabId.setValue(tabs?.[$event]?.id ?? null)
-      );
+      .subscribe((tabs) => {
+        const { type, id } = tabs?.[$event] ?? {};
+
+        this.dispatchLoad(type, id);
+        this.selectedTabId.setValue(tabs?.[$event]?.id ?? null);
+      });
+  }
+
+  dispatchLoad(type: string, id: string) {
+    if (type === 'notes') {
+      this.store.dispatch(notesGet({ tabId: id }));
+    } else if (type === 'todos') {
+      this.store.dispatch(getTodos({ tabId: id }));
+    }
   }
 }

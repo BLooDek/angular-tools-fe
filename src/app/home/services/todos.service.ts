@@ -11,8 +11,8 @@ import { Todo } from '../models/todo.interface';
 export class TodosService {
   constructor(private http: HttpClient) {}
 
-  getTodos(): Observable<Todo[]> {
-    return this.http.get<Todo[]>(`${MAIN_URL}/todo`);
+  getTodos(tabId: string): Observable<Todo[]> {
+    return this.http.get<Todo[]>(`${MAIN_URL}/todo/${tabId}`);
   }
 
   addTodo(tab: Todo): Observable<Todo> {

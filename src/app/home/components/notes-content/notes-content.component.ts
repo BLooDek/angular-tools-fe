@@ -19,9 +19,8 @@ import { Observable } from 'rxjs';
 
 import { Note } from '../../../shared/models/note.interface';
 import { notesFeature } from '../../reducers/notes.reducer';
-import { notesGet, notesUpdate } from '../../actions/notes.actions';
+import { notesUpdate } from '../../actions/notes.actions';
 import { notesAdd, notesRemove } from '../../actions/notes.actions';
-import { tabsFeature } from '../../reducers/tabs.reducer';
 import { NoteComponent } from '../note/note.component';
 
 @Component({
@@ -30,7 +29,7 @@ import { NoteComponent } from '../note/note.component';
   templateUrl: './notes-content.component.html',
   styleUrl: './notes-content.component.scss',
 })
-export class NotesContentComponent implements OnInit, OnChanges {
+export class NotesContentComponent implements OnInit {
   private readonly store = inject(Store);
   private readonly fb = inject(FormBuilder);
 
@@ -44,12 +43,6 @@ export class NotesContentComponent implements OnInit, OnChanges {
       title: ['', Validators.required],
       content: [''],
     });
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['tabId'] && this.tabId()) {
-      this.store.dispatch(notesGet({ tabId: this.tabId() }));
-    }
   }
 
   activateForm(): void {

@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+
 import { MAIN_URL } from '../../shared/constants/app';
-import { ITab } from '../reducers/tabs.reducer';
+import { ITab, TabPayload } from '../reducers/tabs.reducer';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,7 @@ export class TabsService {
     return this.http.get<ITab[]>(`${MAIN_URL}/tabs`);
   }
 
-  addTab(tab: ITab): Observable<ITab> {
+  addTab(tab: TabPayload): Observable<ITab> {
     return this.http.post<ITab>(`${MAIN_URL}/tabs`, tab);
   }
 

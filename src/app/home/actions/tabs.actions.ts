@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { ITab } from '../reducers/tabs.reducer';
+
+import { ITab, TabPayload } from '../reducers/tabs.reducer';
 
 export const tabsGet = createAction('[Tabs] Get Tabs');
 export const tabsGetSuccess = createAction(
@@ -11,7 +12,10 @@ export const tabsGetError = createAction(
   props<{ error: any }>()
 );
 
-export const tabsAdd = createAction('[Tabs] Add Tab', props<{ tab: ITab }>());
+export const tabsAdd = createAction(
+  '[Tabs] Add Tab',
+  props<{ tab: TabPayload }>()
+);
 export const tabsAddSuccess = createAction(
   '[Tabs] Add Tab Success',
   props<{ tab: ITab }>()

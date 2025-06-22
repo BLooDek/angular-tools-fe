@@ -1,11 +1,15 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
+
 import * as tabActions from '../actions/tabs.actions';
 export interface ITab {
   type: string;
   title: string;
-  id?: string;
+  id: string;
 }
-
+export interface TabPayload {
+  type: string;
+  title: string;
+}
 interface State {
   error: string | null;
   loading: boolean;

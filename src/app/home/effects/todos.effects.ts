@@ -7,15 +7,15 @@ import { TodosService } from '../services/todos.service';
 import * as todosActions from '../actions/todos.actions';
 
 @Injectable()
-export class TabsEffects {
+export class TodosEffects {
   private todoService: TodosService = inject(TodosService);
   private actions$: Actions = inject(Actions);
 
   getTodos$ = createEffect(() =>
     this.actions$.pipe(
       ofType(todosActions.getTodos),
-      switchMap(() =>
-        this.todoService.getTodos().pipe(
+      switchMap(({ tabId }) =>
+        this.todoService.getTodos(tabId).pipe(
           map((todos) => todosActions.getTodosSuccess({ todos })),
           catchError((error) => of(todosActions.getTodosError({ error })))
         )
