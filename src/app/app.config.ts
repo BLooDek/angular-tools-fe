@@ -17,8 +17,9 @@ import { provideState, provideStore } from '@ngrx/store';
 
 import { authInterceptor } from './shared/interceptors/logout.interceptor';
 import { credentialsInterceptor } from './shared/interceptors/auth.interceptor';
-import { authFeature, authReducer } from './shared/reducers/auth.reducer';
+import { authFeature } from './shared/reducers/auth.reducer';
 import { notesFeature } from './home/reducers/notes.reducer';
+import { todosFeature } from './home/reducers/todos.reducer';
 import { AuthEffects } from './shared/effects/auth.effects';
 import { CoreEffects } from './shared/effects/core.effects';
 import { NotesEffects } from './home/effects/notes.effects';
@@ -40,8 +41,15 @@ export const appConfig: ApplicationConfig = {
     provideState(authFeature),
     provideState(tabsFeature),
     provideState(notesFeature),
+    provideState(todosFeature),
     provideStore(reducers, { metaReducers }),
-    provideEffects([NotesEffects, AuthEffects, CoreEffects, TabsEffects]),
+    provideEffects([
+      NotesEffects,
+      AuthEffects,
+      CoreEffects,
+      TabsEffects,
+      TabsEffects,
+    ]),
 
     provideStoreDevtools({
       maxAge: 25, // Retains last 25 states

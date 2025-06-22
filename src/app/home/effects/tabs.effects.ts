@@ -1,9 +1,9 @@
 import { inject, Inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { catchError, map, mergeMap, of, switchMap, tap } from 'rxjs';
+
 import { TabsService } from '../services/tabs.service';
 import * as tabsActions from '../actions/tabs.actions';
-import { catchError, map, mergeMap, of, switchMap, tap } from 'rxjs';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable()
 export class TabsEffects {
