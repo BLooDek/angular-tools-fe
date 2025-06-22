@@ -41,7 +41,7 @@ export class AddNewTabComponent implements OnInit, OnDestroy {
   tabsLoading$ = this.store.select(tabsFeature.selectLoading);
   private readonly fb = inject(FormBuilder);
   private readonly subs: Subscription[] = [];
-  types = ['notes'];
+  types = ['notes', 'todos'];
   form = this.fb.group({
     title: ['', [Validators.required, Validators.minLength(3)]],
     type: ['notes', [Validators.required]],

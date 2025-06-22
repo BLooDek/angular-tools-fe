@@ -1,27 +1,28 @@
-import {
-  Component,
-  inject,
-  input,
-  InputSignal,
-  OnInit,
-  OnChanges,
-  SimpleChanges,
-} from '@angular/core';
-import { Store } from '@ngrx/store';
-import { notesGet, notesUpdate } from '../../actions/notes.actions';
-import { tabsFeature } from '../../reducers/tabs.reducer';
 import { CommonModule } from '@angular/common';
-import { notesFeature } from '../../reducers/notes.reucer';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { notesAdd, notesRemove } from '../../actions/notes.actions';
-import { NoteComponent } from '../note/note.component';
+import {
+  Component,
+  inject,
+  input,
+  InputSignal,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+
 import { Note } from '../../../shared/models/note.interface';
+import { notesGet, notesUpdate } from '../../actions/notes.actions';
+import { notesAdd, notesRemove } from '../../actions/notes.actions';
+import { notesFeature } from '../../reducers/notes.reucer';
+import { tabsFeature } from '../../reducers/tabs.reducer';
+import { NoteComponent } from '../note/note.component';
 
 @Component({
   selector: 'app-notes-content',
@@ -39,7 +40,6 @@ export class NotesContentComponent implements OnInit, OnChanges {
   isFormActive = false;
 
   ngOnInit(): void {
-    this.notes$.subscribe(console.log);
     this.noteForm = this.fb.group({
       title: ['', Validators.required],
       content: [''],

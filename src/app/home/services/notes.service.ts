@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { MAIN_URL } from '../../shared/constants/app';
+
 import { Note } from '../../shared/models/note.interface';
+import { MAIN_URL } from '../../shared/constants/app';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ export class NotesService {
   constructor(private http: HttpClient) {}
 
   getNotes(tabId: string): Observable<Note[]> {
-    return this.http.post<Note[]>(`${MAIN_URL}/notes/get`, { tabId });
+    return this.http.get<Note[]>(`${MAIN_URL}/notes/${tabId}`);
   }
 
   addNote(note: Note): Observable<Note> {

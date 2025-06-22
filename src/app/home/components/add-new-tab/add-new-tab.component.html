@@ -20,10 +20,10 @@
     </mat-form-field>
     <mat-form-field floatLabel="always">
       <mat-label>Type</mat-label>
+      @if (form.get('type')?.hasError('required')){
+      <mat-error> Tab type is required. </mat-error>
+      }
 
-      <mat-error *ngIf="form.get('type')?.hasError('required')">
-        Tab type is required.
-      </mat-error>
       <mat-select formControlName="type">
         @for (type of types; track type){
         <mat-option [value]="type">{{ type }}</mat-option>
