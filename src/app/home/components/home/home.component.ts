@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
+import { Dialog, DialogModule } from '@angular/cdk/dialog';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Component, inject, OnInit } from '@angular/core';
@@ -46,9 +47,12 @@ import { tabsGet, tabsRemove } from '../../actions/tabs.actions';
 })
 export class HomeComponent implements OnInit {
   ngOnInit(): void {
-    this.store.dispatch(tabsGet());
+    this.isLoggedIn$.pipe(filter((e) => !!e)).subscribe((isLoggedIn) => {
+      this.store.dispatch(tabsGet());
+    });
   }
   private store: Store = inject(Store);
+  private dialog: Dialog = inject(Dialog);
   private matDialog: MatDialog = inject(MatDialog);
   isLoggedIn$ = this.store.select(authFeature.selectIsLoggedIn);
   tabsLoading$ = this.store.select(tabsFeature.selectLoading);
@@ -61,6 +65,9 @@ export class HomeComponent implements OnInit {
     this.store.dispatch(tabsRemove({ id }));
   }
   onOpenLogin() {
+    // this.dialog.open(LoginDialogComponent, {
+    //   width: '400px',
+    // });
     this.matDialog.open(LoginDialogComponent);
   }
   setSelectedTab($event: number) {

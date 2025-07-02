@@ -1,13 +1,5 @@
-import {
-  provideClientHydration,
-  withEventReplay,
-} from '@angular/platform-browser';
-import {
-  HTTP_INTERCEPTORS,
-  provideHttpClient,
-  withFetch,
-  withInterceptors,
-} from '@angular/common/http';
+import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import { HTTP_INTERCEPTORS, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideRouter } from '@angular/router';
 import { isDevMode } from '@angular/core';

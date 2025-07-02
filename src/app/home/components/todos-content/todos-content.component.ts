@@ -1,12 +1,5 @@
 import { FormBuilder } from '@angular/forms';
-import {
-  Component,
-  inject,
-  input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, inject, input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { getTodos } from '../../actions/todos.actions';

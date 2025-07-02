@@ -1,8 +1,4 @@
-import {
-  HttpHandlerFn,
-  HttpInterceptorFn,
-  HttpRequest,
-} from '@angular/common/http';
+import { HttpHandlerFn, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
 
 /**
  * Functional interceptor to add withCredentials: true to every outgoing request.
